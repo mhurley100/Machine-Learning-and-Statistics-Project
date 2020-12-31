@@ -11,9 +11,9 @@ Develop a web service that will respond with predicted power values based on spe
 
 
 This repository contains:
-Jupyter notebook
-Pyton script that runs the web service based on the model
-Dockerfile to build and run the web service in a container
+- Jupyter notebook
+- Pyton script that runs the web service based on the model
+- Dockerfile to build and run the web service in a container
 
 
 
