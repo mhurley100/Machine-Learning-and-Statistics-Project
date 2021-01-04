@@ -1,32 +1,77 @@
 <!doctype html>
 
-<!-- Copied and adapted from Bootstrap homepage. -->
-
 <html lang="en">
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+<!-- Copied and adapted from Bootstrap homepage. -->
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
-    <title>Hello, world!</title>
+    <title>Power Output Calculator</title>
   </head>
+  <style>
+        body 
+        {
+            margin: 20;
+            padding: 20;
+            background-color: lightgray;
+            border: 5px outset darkblue;
+        }
+        table 
+        {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th 
+        {
+            border: 1px solid #21235f;
+            text-align: left;
+            padding: 8px;
+        }
+
+                h1
+        {
+            color: darkblue;            
+            text-align: center;
+            padding: 20;
+        }
+        .button {
+            background-color: rgb(60, 78, 216);
+            border: none;
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            }            
+    </style>  
   <body>
-    <h1>Hello, from index.html!</h1>
+    <h1>Power Output from Wind Speed Calculator</h1>
     <div class="container">
         <div class="row">
           <div class="col-sm">
-            <input class="form-control" id="output" type="text" placeholder="Random number here.." readonly>
+            <input class="form-control col-xs-5 col-lg-5" id="input" type="text" placeholder="Please input number between 3 and 25......" >
           </div>
         </div>
         <div class="row">
           <div class="col-sm">
-            <button type="button" class="btn btn-success" id="uniform-button">Uniform</button>
+            <button type="button" class="btn btn-success" id="Linear-Regression-button">Linear Regression</button>
           </div>
           <div class="col-sm">
-            <button type="button" class="btn btn-primary" id="normal-button">Normal</button>
+            <button type="button" class="btn btn-primary" id="RF-button">RF</button>
+          </div>
+          <div class="col-sm">
+            <button type="button" class="btn btn-primary" id="Polynomial-button">Polynomial</button>
+          </div>
+          <div class="col-sm">
+            <button type="button" class="btn btn-primary" id="Neural-Network-button">Keras</button>
           </div>
         </div>
       </div>
@@ -46,19 +91,45 @@
 
 
     <script>
+    $("#RF-button").click(function(e){
+            // Saves speed.
+      var speed = document.getElementById("input").value;
+            
+            
+            if (speed < 3)
+            { 
+                alert("Please enter Wind Speed between 3 & 25");
+                
+            }
+            if (speed > 25)
+            { 
+                alert("Please enter Wind Speed between 3 & 25");
+            
+            }
+            else
+            {
+            e.preventDefault();
+            $.getJSON("/api/randF/" + (speed), function(data){
+                $('#userResult').val('Based on windspeed of ' + speed +', expected power output is: ' + data.value + 'KWh');
+            
+            });
+            }
+        });
+
+
         // Adapted from stack overflow posts.
-        $("#normal-button").click(function(e) {
-            e.preventDefault();
-            $.getJSON("/api/normal", function(data) {
-                $('#output').val(data.value);
-            });
-        });
-        $("#uniform-button").click(function(e) {
-            e.preventDefault();
-            $.getJSON("/api/uniform", function(data) {
-                $('#output').val(data.value);
-            });
-        });
+       // $("#normal-button").click(function(e) {
+       //     e.preventDefault();
+       //     $.getJSON("/api/normal", function(data) {
+         //       $('#output').val(data.value);
+       //     });
+     //   });
+     //  $("#uniform-button").click(function(e) {
+    //        e.preventDefault();
+   //         $.getJSON("/api/uniform", function(data) {
+   //             $('#output').val(data.value);
+    //        });
+ //       });
     </script>
   </body>
 </html>
