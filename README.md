@@ -8,35 +8,51 @@ Create a web service that uses machine learning to make predictions based on the
 
 ###  Repository contents:
 
-1. Jupyter notebook investigating the power production dataset and associated models
-2. server.py  that runs the web service based on the model:
-3. Dockerfile to build and run the web service in a container
-4. The power production dataset (csv file)
-5. Python scripts that runs the web service based on the model:
-6. requirements.txt is a requirements file for the virtual environment and Docker container
-7. staticpages folder of which index.html is the home page of the flask server
+1. The power production dataset (csv file).
+2. Jupyter notebook investigating and modelling the power production dataset.
+3. requirements.txt listing requirements for the virtual environment and Docker container.
+4. server.py  that runs the web service.
+5. staticpages folder of which index.html is the home page of the flask server.
+6. Dockerfile to build and run the web service in a container.
+7. model.pkl - the serialised random forest output from the jupyter notebook
 8. Readme
 
-#### Create Virtual Enviromment
 
+
+
+#### Download the Repository
+
+Firstly, this repository needs to be downloaded.  Do the following:
+-Click on the "Clone or Download" button
+-Select "Download ZIP". This will open a prompt allowing you to save the file to your computer.
+-Navigate to the download location and extract the compressed (.zip) folder to a suitable location.
+
+#### Review the jupyter notebook 
+- Review Machine Learning & Statistics Project 2020.ipynb file.  This should provide an understanding of the relationship between wind speed and power output.
+
+#### Open Web Service
+
+This can be achieved in a number of ways:
+- Virtual Enviromment
+- Docker
+
+####  Virtual Enviromment
+
+Create a virtual environment on the command line interface and navigate to the website specified below:
 - python -m venv venv
 - .\venv\Scripts\activate.bat
 - set FLASK_APP=server
 - set FLASK_ENV=development (if you wish to run in a development environment)
 - flask run
 
+Navigate to this website:
+
+http://127.0.0.1:5000
+
+Input the speed value and click the calculate button.
 
 #### Build Docker
 
 docker build . -t server-app
 docker run -d -p 5000:5000 server-app
 
-
-
-#### Downloading the Repository
-
-To download it, do the following:
-
-    Click on the "Clone or Download" button
-    Select "Download ZIP". This will open a prompt allowing you to save the file to your computer.
-    Navigate to the download location and extract the compressed (.zip) folder to a suitable location.
