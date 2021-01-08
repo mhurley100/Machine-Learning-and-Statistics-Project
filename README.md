@@ -15,16 +15,17 @@ Create a web service that uses machine learning to make predictions based on the
 5. staticpages folder of which index.html is the home page of the flask server.
 6. Dockerfile to build and run the web service in a container.
 7. model.pkl - the serialised random forest output from the jupyter notebook
-8. Readme
+8. Readme.
 
 
 #### Download the Repository
 
 Firstly, this repository needs to be downloaded.  Do the following:
+
 - Go to https://github.com/mhurley100/Machine-Learning-Statistics-Tasks.git
--Click on the "Clone or Download" button
--Select "Download ZIP". This will open a prompt allowing you to save the file to your computer.
--Navigate to the download location and extract the compressed (.zip) folder to a suitable location.
+- Click on the "Clone or Download" button.
+- Select "Download ZIP". This will open a prompt allowing you to save the file to your computer.
+- Navigate to the download location and extract the compressed (.zip) folder to a suitable location.
 
 #### Review the jupyter notebook 
 - Review Machine Learning & Statistics Project 2020.ipynb file.  This provides an analysis of the relationship between wind speed and power output.
