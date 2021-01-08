@@ -10,86 +10,126 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-  
-   
-       
-      <title>Power Output Calculator</title>
-    </head>
-    <style>
-      body 
-      {
-          margin: 20;
-          padding: 20;
-          background-color: lightgray;
-          border: 5px outset darkblue;
-      }
-     
-      h1
-      {
-          color: darkblue;            
-          text-align: center;
-          padding: 20;
-      }
-     
-      h2
-      {
-          color: rgb(139, 0, 127);            
-          text-align: center;
-          font-size: 25px;
-          padding: 10;
-      }
       
+    <title>Power Output Calculator</title>
+  </head>
+ 
+  <style>
+    body 
+    {
+      margin: 20;
+      padding: 20;
+      background-color: lightgray;
+      border: 50px outset teal;
+    }
+
+    form 
+    {
+      text-align: center;
+    }
+
+    table 
+    {
+      text-align: center;
+      border:solid;
+    }
+          
+    h1
+    {
+      color: darkblue;            
+      text-align: center;
+      padding: 20;
+    }
+     
+    h2
+    {
+      color:darkblue;           
+      text-align: center;
+      font-size: 25px;
+      padding: 10;
+    }
+
+    h3
+    {
+      color: mediumpurple;       
+      text-align: center;
+      font-size: 25px;
+      padding: 10;
+    }
+     
+    .footer 
+    {
+      position: fixed;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      background-color: darkblue;
+      color: white;
+      text-align: center;
+    }
+
+    .center-block
+    {
+      margin: auto;
+      display: block;
+    }
+              
   </style>  
-  <body>
-       
-      <div class="container">
-        <pre class="tab"> </pre>
-        <div class="row">
-          <div class="col-sm">
-            <h1>Power Output Calculator (kWh)</h1>
-            <h2> Turbine power output based on wind speed</h2>
-            <pre class="tab"> </pre>                                     
+  <body>       
+    <div class="container">
+      <pre class="tab"> </pre>
+      <div class="row">
+        <div class="col-sm">
+          <h1>Power Output Calculator (kWh)</h1>
+          <pre class="tab"> </pre> 
+          <h2> Turbine power output based on wind speed</h2>
+            <pre class="tab"> </pre> 
+            <h3>Please enter wind speed below and then click "Calculate":</h3>                  
               <form>                
-                  <div>
-                    <pre class="tab"> </pre>  
-                    <input class="form-control col-xs-5 col-lg-5" id="input" type="number" placeholder="Please input wind speed between 3 and 25 m/s......" >
-                    <pre class="tab"> </pre>   
-                    <button type="button" class="btn btn-primary" id="calc">Calculate</button>
-                    <pre class="tab"> </pre>       
+                <div>
+                  <pre class="tab"> </pre>  
+                  <!-- Input box for speed -->
+                  <input class="form-control center-block offset-md-2 col-md-3" id="input" type="number" placeholder=" Input wind speed (3 - 25 m/s)......" >
+                  <pre class="tab"> </pre>   
+                  <!-- Calculate button -->
+                  <button type="button" class="btn btn-primary block col-md-3" id="calc">Calculate</button>
+                  <pre class="tab"> </pre>       
                   </div>
-              </form>
-                  
-            <table>
-              <tr>
-                <td><input id="result" class="form-control" type="text" placeholder=" Power (kWh)" readonly>
-              </tr>
-            </table>  
-          </div>
+              </form>                  
+                <table align="center">
+                  <tr>
+                <!-- Output box -->
+                    <td><input id="result" class="form-control " type="text" placeholder=" Power (kWh)" readonly>
+                  </tr>
+                </table>  
+                <pre class="tab"> </pre>   
         </div>
       </div>
- 
+    </div>
+    
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <!-- Changed from slim to full jQuery. -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
-  
     <script>
     
     $("#calc").click(function(e) {
       e.preventDefault();
-      // Saves speed
+      // Saves speed from the value entered on the input button.
       var speed = document.getElementById("input").value;
       
-      
+      // If speed is less than 3 generate an alert.
      if (speed < 3)
       { 
-                alert("Please enter Wind Speed between 3 & 25");
+        alert("Please enter Wind Speed between 3 & 25");
+      // If speed is greater than 25 generate an alert.          
       }
       if (speed > 25)
-            { 
-                alert("Please enter Wind Speed between 3 & 25");            
-            }        
+      { 
+          alert("Please enter Wind Speed between 3 & 25");            
+      }  
+      // If a valid number is entered, get the corresponding power output from the random forest joblib export to 2 decimal places.            
       else 
       {
         $.getJSON("/api/model/"+encodeURIComponent(speed), function(result) {
@@ -99,9 +139,11 @@
       });	 
          
       } 
+      
     });
+ 
+    </script>
 
-   
-  </script>
  </body>
+ 
 </html>

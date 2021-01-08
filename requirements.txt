@@ -7,3 +7,7 @@ numpy==1.19.2
 tensorflow==2.4.0
 silence-tensorflow==1.1.1
 Werkzeug==1.0.1
+joblib
+matplotlib
+scikit-image
+scikit-learn

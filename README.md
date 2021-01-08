@@ -18,41 +18,45 @@ Create a web service that uses machine learning to make predictions based on the
 8. Readme
 
 
-
-
 #### Download the Repository
 
 Firstly, this repository needs to be downloaded.  Do the following:
+- Go to https://github.com/mhurley100/Machine-Learning-Statistics-Tasks.git
 -Click on the "Clone or Download" button
 -Select "Download ZIP". This will open a prompt allowing you to save the file to your computer.
 -Navigate to the download location and extract the compressed (.zip) folder to a suitable location.
 
 #### Review the jupyter notebook 
-- Review Machine Learning & Statistics Project 2020.ipynb file.  This should provide an understanding of the relationship between wind speed and power output.
+- Review Machine Learning & Statistics Project 2020.ipynb file.  This provides an analysis of the relationship between wind speed and power output.
 
 #### Open Web Service
 
-This can be achieved in a number of ways:
-- Virtual Enviromment
-- Docker
+This can be achieved by running the flask app either in a virtual enviroment or through Docker.
 
-####  Virtual Enviromment
+####  Virtual Environment
 
-Create a virtual environment on the command line interface and navigate to the website specified below:
+Create a virtual environment on the command line interface as follows:
 - python -m venv venv
 - .\venv\Scripts\activate.bat
 - set FLASK_APP=server
 - set FLASK_ENV=development (if you wish to run in a development environment)
 - flask run
 
-Navigate to this website:
+-Navigate to this website:
 
 http://127.0.0.1:5000
 
-Input the speed value and click the calculate button.
+- Input the speed value and click the calculate button.
 
-#### Build Docker
+#### Docker Container
 
-docker build . -t server-app
-docker run -d -p 5000:5000 server-app
+Steps are as follows:
+1. Build the docker image:          docker build -t server-app .
+2. View Docker image:               docker image ls
+3. View docker container            docker container ls
+4. Run docker in detached mode:     docker run -d -p 5000:5000 server-app
 
+
+ ### Licence 
+ 
+ This project is licensed under GNU GENERAL PUBLIC LICENSE
